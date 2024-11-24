@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, ExternalLink, Github } from 'lucide-react';
 
@@ -7,7 +8,7 @@ const projects = [
     id: 1,
     title: 'A SNAKE Game',
     description: 'A classic Snake game implemented with HTML, CSS, and JavaScript. Features responsive design and increasing difficulty as the snake grows.',
-    image: './project.jpg',
+    image: '/snake.png',
     tags: ['HTML', 'CSS', 'Javascript'],
     github: 'https://github.com/harishgarg2508/snakegame',
     demo: 'https://harishgarg2508.github.io/snakegame/'
@@ -16,7 +17,7 @@ const projects = [
     id: 2,
     title: 'Dental Clinic Website',
     description: 'A comprehensive website for a dental clinic built with React. Includes appointment booking, service information, and a responsive design.',
-    image: './clinic.png',
+    image: '/clinic.png',
     tags: ['React', 'DnD', 'Redux'],
     github: 'https://github.com/harishgarg2508/dental-clinic-website',
     demo: 'https://sunrisedentalclinic.netlify.app/'
@@ -25,7 +26,7 @@ const projects = [
     id: 3,
     title: 'Weather Dashboard',
     description: 'A real-time weather application using OpenWeatherMap API and Chart.js. Provides current weather data and forecasts with interactive charts.',
-    image: 'weather.png',
+    image: '/weather.png',
     tags: ['API', 'Chart.js', 'React'],
     github: 'https://github.com',
     demo: 'https://demo.com'
@@ -38,11 +39,16 @@ const ProjectCard = ({ project }) => {
       {/* Mobile Layout */}
       <div className="md:hidden">
         <div className="relative aspect-[4/3]">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              priority
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
             <h3 className="text-2xl font-bold text-white drop-shadow-lg mb-2">
               {project.title}
@@ -59,6 +65,7 @@ const ProjectCard = ({ project }) => {
             </div>
           </div>
         </div>
+        {/* Rest of mobile layout remains the same */}
         <div className="p-4">
           <p className="text-gray-300 text-sm mb-4">
             {project.description}
@@ -128,11 +135,16 @@ const ProjectCard = ({ project }) => {
         </div>
         <div className="w-1/2 relative group">
           <div className="aspect-[16/9] w-full h-full relative overflow-hidden rounded-lg">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                priority
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
               <div className="flex gap-4">
                 <a
@@ -160,6 +172,7 @@ const ProjectCard = ({ project }) => {
   );
 };
 
+// NavigationButton and ProjectsSection components remain the same
 const NavigationButton = ({ direction, onClick }) => (
   <button
     onClick={onClick}
@@ -263,4 +276,3 @@ export default function ProjectsSection() {
     </div>
   );
 }
-
