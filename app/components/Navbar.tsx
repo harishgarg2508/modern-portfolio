@@ -26,7 +26,6 @@ export default function Navbar() {
   const [activeItem, setActiveItem] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +42,6 @@ export default function Navbar() {
       })
 
       if (currentSection) {
-        setActiveSection(currentSection)
         setActiveItem(menuItems.findIndex(item => item.sectionId === currentSection))
       }
     }
@@ -78,7 +76,6 @@ export default function Navbar() {
     setIsMobileMenuOpen(prev => !prev)
   }
 
-  // Desktop Navigation JSX remains the same
   const DesktopNav = () => (
     <motion.nav
       initial={{ y: -100 }}
@@ -87,7 +84,6 @@ export default function Navbar() {
         isScrolled ? 'py-2' : 'py-4'
       } transition-all duration-300`}
     >
-      {/* Your existing desktop navigation code */}
       <div className="max-w-6xl mx-auto px-4">
         <div className={`
           relative backdrop-blur-lg rounded-2xl 
