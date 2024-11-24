@@ -92,7 +92,7 @@ export default function EducationSection() {
           <EducationCard 
             key={edu.id} 
             education={edu} 
-            index={index}
+            // index={index}
             isLeft={index % 2 === 0}
           />
         ))}
