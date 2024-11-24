@@ -16,11 +16,11 @@ interface Education {
 
 interface Props {
   education: Education;
-  index: number;
+  // index: number;
   isLeft: boolean;
 }
 
-export default function EducationCard({ education, index, isLeft }: Props) {
+export default function EducationCard({ education, isLeft }: Props) {
   const containerVariants = {
     hidden: { 
       opacity: 0,
