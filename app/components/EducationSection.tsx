@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Calendar, MapPin, Award, BookOpen } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 import EducationCard from './EducationCard';
 
 const education = [
@@ -46,11 +46,11 @@ export default function EducationSection() {
             key={i}
             className="absolute w-2 h-2 bg-blue-500/20 rounded-full"
             initial={{ 
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight
+              x: `${Math.random() * 100}%`,
+              y: `${Math.random() * 100}%`
             }}
             animate={{
-              y: [0, Math.random() * 100, 0],
+              y: ['0%', `${Math.random() * 10}%`, '0%'],
               opacity: [0.2, 0.5, 0.2]
             }}
             transition={{
