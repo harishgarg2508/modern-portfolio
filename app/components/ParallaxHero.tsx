@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
+import { Code2, Terminal, Cpu, Blocks, Sparkles, Github, Linkedin, Twitter } from 'lucide-react';
 
 function ParallaxProjects() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
