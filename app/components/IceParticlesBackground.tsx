@@ -28,9 +28,10 @@ const FuturisticBackground: React.FC = () => {
       opacity: number;
       color: string;
 
-      constructor(canvasWidth: number, canvasHeight: number) {
-        this.x = Math.random() * canvasWidth;
-        this.y = Math.random() * canvasHeight;
+      constructor() {
+        const canvas = canvasRef.current!;
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2.5 + 0.5;
         this.speedX = Math.random() * 0.8 - 0.8;
         this.speedY = Math.random() * 0.8 + 0.8;
@@ -48,18 +49,19 @@ const FuturisticBackground: React.FC = () => {
         return colors[Math.floor(Math.random() * colors.length)];
       }
 
-      update(canvasWidth: number, canvasHeight: number) {
+      update() {
+        const canvas = canvasRef.current!;
         this.y += this.speedY;
         this.x += this.speedX;
 
-        if (this.y > canvasHeight) {
+        if (this.y > canvas.height) {
           this.y = -10;
-          this.x = Math.random() * canvasWidth;
+          this.x = Math.random() * canvas.width;
           this.opacity = Math.random() * 0.4 + 0.2;
           this.color = this.getRandomColor();
         }
-        if (this.x < 0) this.x = canvasWidth;
-        if (this.x > canvasWidth) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
 
         this.opacity += Math.sin(Date.now() * 0.001) * 0.002;
       }
@@ -75,7 +77,7 @@ const FuturisticBackground: React.FC = () => {
     const particles: Particle[] = [];
     const particleCount = Math.floor((canvas.width * canvas.height) / 8000);
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle(canvas.width, canvas.height));
+      particles.push(new Particle());
     }
 
     const animate = () => {
@@ -94,7 +96,7 @@ const FuturisticBackground: React.FC = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach(particle => {
-        particle.update(canvas.width, canvas.height);
+        particle.update();
         particle.draw(ctx);
       });
 
