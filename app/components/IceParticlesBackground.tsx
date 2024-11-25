@@ -41,9 +41,9 @@ const FuturisticBackground: React.FC = () => {
       opacity: number;
       color: string;
 
-      constructor(canvasWidth: number, canvasHeight: number) {
-        this.x = Math.random() * canvasWidth;
-        this.y = Math.random() * canvasHeight;
+      constructor(width: number, height: number) {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
         this.size = Math.random() * 2.5 + 0.5;
         this.speedX = Math.random() * 0.8 - 0.8;
         this.speedY = Math.random() * 0.8 + 0.8;
@@ -61,18 +61,18 @@ const FuturisticBackground: React.FC = () => {
         return colors[Math.floor(Math.random() * colors.length)];
       }
 
-      update(canvasWidth: number, canvasHeight: number) {
+      update(width: number, height: number) {
         this.y += this.speedY;
         this.x += this.speedX;
 
-        if (this.y > canvasHeight) {
+        if (this.y > height) {
           this.y = -10;
-          this.x = Math.random() * canvasWidth;
+          this.x = Math.random() * width;
           this.opacity = Math.random() * 0.4 + 0.2;
           this.color = this.getRandomColor();
         }
-        if (this.x < 0) this.x = canvasWidth;
-        if (this.x > canvasWidth) this.x = 0;
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
 
         this.opacity += Math.sin(Date.now() * 0.001) * 0.002;
       }
@@ -86,27 +86,27 @@ const FuturisticBackground: React.FC = () => {
     }
 
     const particles: Particle[] = [];
-    const particleCount = Math.floor((canvas.width * canvas.height) / 8000);
+    const particleCount = Math.floor((dimensions.width * dimensions.height) / 8000);
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle(canvas.width, canvas.height));
+      particles.push(new Particle(dimensions.width, dimensions.height));
     }
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, dimensions.width, dimensions.height);
       
       const gradient = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+        dimensions.width / 2, dimensions.height / 2, 0,
+        dimensions.width / 2, dimensions.height / 2, Math.max(dimensions.width, dimensions.height) / 2
       );
       gradient.addColorStop(0, 'rgba(49, 10, 94, 1)');    // Deep purple
       gradient.addColorStop(0.5, 'rgba(36, 7, 70, 1)');   // Darker purple
       gradient.addColorStop(1, 'rgba(17, 24, 39, 1)');    // Very dark blue/gray
 
       ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, dimensions.width, dimensions.height);
 
       particles.forEach(particle => {
-        particle.update(canvas.width, canvas.height);
+        particle.update(dimensions.width, dimensions.height);
         particle.draw(ctx);
       });
 
@@ -132,6 +132,10 @@ const FuturisticBackground: React.FC = () => {
     };
 
     animate();
+
+    return () => {
+      // Clean up animation if needed
+    };
   }, [dimensions]);
 
   return (
