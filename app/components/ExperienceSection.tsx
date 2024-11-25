@@ -1,6 +1,9 @@
+'use client'
+
 import { motion } from 'framer-motion';
 import { ExperienceCard } from './ExperienceCard';
 import { TimelineConnector } from './TimelineConnector';
+import { useEffect, useState } from 'react';
 
 const experiences = [
   {
@@ -14,17 +17,31 @@ const experiences = [
     company: "Dental Care Solutions",
     period: "2024 - Present",
     description: "Built a responsive and user-friendly website for a dental clinic as a freelance project. Utilized React and Node.js for development, integrated MongoDB for secure data management, and implemented features like online appointment scheduling to streamline operations."
-  },
-  
-//   {
-//     title: "Frontend Developer",
-//     company: "WebTech Solutions",
-//     period: "2017 - 2019",
-//     description: "Created responsive web interfaces using React and Redux. Implemented automated testing and reduced bug reports by 60%."
-//   }
+  }
 ];
 
+const generateParticles = (count: number) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    randomX: Math.random() * 100,
+    randomY: Math.random() * 100,
+    delay: Math.random() * 5,
+    duration: 5 + Math.random() * 10
+  }));
+};
+
 export const ExperienceSection = () => {
+  const [particles, setParticles] = useState(() => generateParticles(20));
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <section className="min-h-screen bg-black/400 py-20 relative overflow-hidden">
       {/* Background Effects */}
@@ -84,26 +101,25 @@ export const ExperienceSection = () => {
       </div>
 
       {/* Floating Particles */}
-      {[...Array(20)].map((_, i) => (
+      {particles.map(({ id, randomX, randomY, delay, duration }) => (
         <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-purple-500 rounded-full"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-          }}
+          key={id}
+          className="particle"
+          style={{
+            '--random-x': randomX,
+            '--random-y': randomY,
+          } as React.CSSProperties}
+          initial={{ opacity: 0, scale: 0 }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
             opacity: [0, 1, 0],
             scale: [0, 1.5, 0],
           }}
           transition={{
-            duration: 5 + Math.random() * 10,
+            duration,
             repeat: Infinity,
             repeatType: "loop",
             ease: "linear",
-            delay: Math.random() * 5,
+            delay,
           }}
         />
       ))}
