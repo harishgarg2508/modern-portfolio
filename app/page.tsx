@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import Navbar from './components/Navbar'
-import ParallaxProjects from './components/ParallaxHero'
+import ParallaxProjects from './components/ParallaxProjects'
 import AnimatedSkillIcons from './components/AnimatedSkillIcons'
 import { ExperienceSection } from './components/ExperienceSection'
 import EducationSection from './components/EducationSection'
@@ -12,7 +12,10 @@ import SocialLinks from './components/SocialLinks'
 import ParallaxHero from './components/ParallaxHero'
 
 const FuturisticBackground = dynamic(() => import('./components/IceParticlesBackground'), { ssr: false })
-
+const ClientParallaxProvider = dynamic(() => 
+  import('react-scroll-parallax').then((mod) => ({ default: mod.ParallaxProvider })),
+  { ssr: false }
+)
 export default function Home() {
   return (
     <ParallaxProvider>

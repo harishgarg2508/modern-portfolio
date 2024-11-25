@@ -206,7 +206,7 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({ direction, onClick 
   </button>
 );
 
-const ProjectsSection: React.FC = () => {
+const ParallaxProjects: React.FC = () => {
   const [[currentIndex, direction], setPage] = useState<[number, number]>([0, 0]);
 
   const paginate = (newDirection: number) => {
@@ -295,4 +295,4 @@ const ProjectsSection: React.FC = () => {
   );
 };
 
-export default ProjectsSection;
+export default ParallaxProjects;

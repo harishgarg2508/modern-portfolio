@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -10,7 +10,7 @@ const FuturisticBackground: React.FC = () => {
     const setCanvasSize = () => {
       setDimensions({
         width: window.innerWidth,
-        height: window.innerHeight,
+        height: window.innerHeight
       });
     };
 
@@ -24,11 +24,10 @@ const FuturisticBackground: React.FC = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    if (!canvas) return; // Ensure canvas exists
     const ctx = canvas.getContext('2d');
-
-    if (!ctx) return; // Ensure context is available
+    if (!ctx) return;
 
     canvas.width = dimensions.width;
     canvas.height = dimensions.height;
@@ -54,10 +53,10 @@ const FuturisticBackground: React.FC = () => {
 
       getRandomColor() {
         const colors = [
-          'rgba(147, 51, 234, 0.7)', // Bright purple
+          'rgba(147, 51, 234, 0.7)',  // Bright purple
           'rgba(192, 132, 252, 0.7)', // Light purple
-          'rgba(79, 70, 229, 0.7)', // Indigo
-          'rgba(59, 130, 246, 0.7)', // Blue
+          'rgba(79, 70, 229, 0.7)',   // Indigo
+          'rgba(59, 130, 246, 0.7)',  // Blue
         ];
         return colors[Math.floor(Math.random() * colors.length)];
       }
@@ -88,36 +87,31 @@ const FuturisticBackground: React.FC = () => {
 
     const particles: Particle[] = [];
     const particleCount = Math.floor((dimensions.width * dimensions.height) / 8000);
-
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle(dimensions.width, dimensions.height));
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
-
+      
       const gradient = ctx.createRadialGradient(
-        dimensions.width / 2,
-        dimensions.height / 2,
-        0,
-        dimensions.width / 2,
-        dimensions.height / 2,
-        Math.max(dimensions.width, dimensions.height) / 2,
+        dimensions.width / 2, dimensions.height / 2, 0,
+        dimensions.width / 2, dimensions.height / 2, Math.max(dimensions.width, dimensions.height) / 2
       );
-      gradient.addColorStop(0, 'rgba(49, 10, 94, 1)'); // Deep purple
-      gradient.addColorStop(0.5, 'rgba(36, 7, 70, 1)'); // Darker purple
-      gradient.addColorStop(1, 'rgba(17, 24, 39, 1)'); // Very dark blue/gray
+      gradient.addColorStop(0, 'rgba(49, 10, 94, 1)');    // Deep purple
+      gradient.addColorStop(0.5, 'rgba(36, 7, 70, 1)');   // Darker purple
+      gradient.addColorStop(1, 'rgba(17, 24, 39, 1)');    // Very dark blue/gray
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, dimensions.width, dimensions.height);
 
-      particles.forEach((particle) => {
+      particles.forEach(particle => {
         particle.update(dimensions.width, dimensions.height);
         particle.draw(ctx);
       });
 
-      particles.forEach((particleA) => {
-        particles.forEach((particleB) => {
+      particles.forEach(particleA => {
+        particles.forEach(particleB => {
           const dx = particleA.x - particleB.x;
           const dy = particleA.y - particleB.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
@@ -138,6 +132,10 @@ const FuturisticBackground: React.FC = () => {
     };
 
     animate();
+
+    return () => {
+      // Clean up animation if needed
+    };
   }, [dimensions]);
 
   return (
