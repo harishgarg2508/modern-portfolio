@@ -3,7 +3,17 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, ExternalLink, Github } from 'lucide-react';
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  github: string;
+  demo: string;
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: 'A SNAKE Game',
@@ -33,7 +43,11 @@ const projects = [
   }
 ];
 
-const ProjectCard = ({ project }) => {
+interface ProjectCardProps {
+  project: Project;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="w-full max-w-6xl mx-auto h-full flex flex-col bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-xl shadow-xl border border-gray-700/30 overflow-hidden">
       {/* Mobile Layout */}
@@ -65,7 +79,6 @@ const ProjectCard = ({ project }) => {
             </div>
           </div>
         </div>
-        {/* Rest of mobile layout remains the same */}
         <div className="p-4">
           <p className="text-gray-300 text-sm mb-4">
             {project.description}
@@ -93,6 +106,7 @@ const ProjectCard = ({ project }) => {
 
       {/* Desktop Layout */}
       <div className="hidden md:flex p-8 h-full">
+        {/* Desktop layout content remains the same */}
         <div className="w-1/2 pr-8 flex flex-col justify-between">
           <div>
             <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -172,8 +186,12 @@ const ProjectCard = ({ project }) => {
   );
 };
 
-// NavigationButton and ProjectsSection components remain the same
-const NavigationButton = ({ direction, onClick }) => (
+interface NavigationButtonProps {
+  direction: 'left' | 'right';
+  onClick: () => void;
+}
+
+const NavigationButton: React.FC<NavigationButtonProps> = ({ direction, onClick }) => (
   <button
     onClick={onClick}
     className={`absolute top-1/2 -translate-y-1/2 ${
@@ -188,10 +206,10 @@ const NavigationButton = ({ direction, onClick }) => (
   </button>
 );
 
-export default function ProjectsSection() {
-  const [[currentIndex, direction], setPage] = useState([0, 0]);
+const ProjectsSection: React.FC = () => {
+  const [[currentIndex, direction], setPage] = useState<[number, number]>([0, 0]);
 
-  const paginate = (newDirection) => {
+  const paginate = (newDirection: number) => {
     const totalProjects = projects.length;
     let newIndex;
     
@@ -205,7 +223,7 @@ export default function ProjectsSection() {
   };
 
   const variants = {
-    enter: (direction) => ({
+    enter: (direction: number) => ({
       x: direction > 0 ? '100%' : '-100%',
       opacity: 0
     }),
@@ -214,7 +232,7 @@ export default function ProjectsSection() {
       x: 0,
       opacity: 1
     },
-    exit: (direction) => ({
+    exit: (direction: number) => ({
       zIndex: 0,
       x: direction < 0 ? '100%' : '-100%',
       opacity: 0
@@ -275,4 +293,6 @@ export default function ProjectsSection() {
       </div>
     </div>
   );
-}
+};
+
+export default ProjectsSection;
