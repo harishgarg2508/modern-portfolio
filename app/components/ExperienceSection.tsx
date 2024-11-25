@@ -1,9 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ExperienceCard } from './ExperienceCard';
 import { TimelineConnector } from './TimelineConnector';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 const experiences = [
   {
@@ -25,14 +25,62 @@ const generateParticles = (count: number) => {
     id: i,
     randomX: Math.random() * 100,
     randomY: Math.random() * 100,
-    delay: Math.random() * 5,
-    duration: 5 + Math.random() * 10
+    delay: Math.random() * 2, // Reduced delay variation
+    duration: 3 + Math.random() * 4 // Reduced duration range
   }));
 };
 
+const BackgroundGradient = () => (
+  <motion.div
+    className="absolute inset-0 opacity-30"
+    style={{
+      backgroundImage: 'radial-gradient(circle at 50% 50%, purple 1px, transparent 1px)',
+      backgroundSize: '100px 50px',
+    }}
+    initial={{ opacity: 0.2 }}
+    animate={{
+      scale: [1, 1.05, 1], // Reduced scale range
+      opacity: [0.2, 0.25, 0.2], // Reduced opacity range
+    }}
+    transition={{
+      duration: 8, // Increased duration for smoother animation
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "linear"
+    }}
+  />
+);
+
+const ParticleEffect = ({ particle }: { particle: ReturnType<typeof generateParticles>[0] }) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      key={particle.id}
+      className="particle"
+      style={{
+        '--random-x': particle.randomX,
+        '--random-y': particle.randomY,
+      } as React.CSSProperties}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={shouldReduceMotion ? { opacity: 0.5, scale: 1 } : {
+        opacity: [0, 0.5, 0],
+        scale: [0, 1, 0],
+      }}
+      transition={{
+        duration: particle.duration,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "linear",
+        delay: particle.delay,
+      }}
+    />
+  );
+};
+
 export const ExperienceSection = () => {
-  const [particles, setParticles] = useState(() => generateParticles(20));
   const [mounted, setMounted] = useState(false);
+  const particles = useMemo(() => generateParticles(12), []); // Reduced particle count
 
   useEffect(() => {
     setMounted(true);
@@ -44,44 +92,30 @@ export const ExperienceSection = () => {
 
   return (
     <section className="min-h-screen bg-black/400 py-20 relative overflow-hidden">
-      {/* Background Effects */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 50% 50%, purple 1px, transparent 1px)',
-          backgroundSize: '100px 50px',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
+      <BackgroundGradient />
 
       <div className="max-w-5xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <motion.h2
             className="text-4xl font-bold text-white mb-4"
             animate={{
               textShadow: [
-                "0 0 20px rgba(168, 85, 247, 0.5)",
-                "0 0 40px rgba(168, 85, 247, 0.5)",
-                "0 0 20px rgba(168, 85, 247, 0.5)",
+                "0 0 20px rgba(168, 85, 247, 0.3)",
+                "0 0 30px rgba(168, 85, 247, 0.3)",
+                "0 0 20px rgba(168, 85, 247, 0.3)",
               ],
             }}
             transition={{
-              duration: 2,
+              duration: 3,
               repeat: Infinity,
               repeatType: "reverse",
+              ease: "linear"
             }}
           >
             Professional Experience
@@ -100,28 +134,8 @@ export const ExperienceSection = () => {
         </div>
       </div>
 
-      {/* Floating Particles */}
-      {particles.map(({ id, randomX, randomY, delay, duration }) => (
-        <motion.div
-          key={id}
-          className="particle"
-          style={{
-            '--random-x': randomX,
-            '--random-y': randomY,
-          } as React.CSSProperties}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
-          }}
-          transition={{
-            duration,
-            repeat: Infinity,
-            repeatType: "loop",
-            ease: "linear",
-            delay,
-          }}
-        />
+      {particles.map((particle) => (
+        <ParticleEffect key={particle.id} particle={particle} />
       ))}
     </section>
   );
