@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Loader2, Send, CheckCircle } from 'lucide-react'
 
@@ -33,12 +33,12 @@ export default function ContactForm() {
     }
   }, [isSubmitted])
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsSubmitting(true)
     setResult("Sending....")
 
-    const formData = new FormData(event.target)
+    const formData = new FormData(event.currentTarget)
     formData.append("access_key", "683bdd67-0ccd-46f0-90a4-50285c263157") // Your Web3Forms access key
 
     try {
