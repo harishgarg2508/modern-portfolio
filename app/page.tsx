@@ -11,17 +11,17 @@ import ContactForm from './components/contact'
 import SocialLinks from './components/SocialLinks'
 import ParallaxHero from './components/ParallaxHero'
 
-const FuturisticBackground = dynamic(() => import('./components/IceParticlesBackground'), { ssr: false })
-const ClientParallaxProvider = dynamic(() => 
-  import('react-scroll-parallax').then((mod) => ({ default: mod.ParallaxProvider })),
-  { ssr: false }
-)
+// const FuturisticBackground = dynamic(() => import('./components/IceParticlesBackground'), { ssr: false })
+// const ClientParallaxProvider = dynamic(() => 
+//   import('react-scroll-parallax').then((mod) => ({ default: mod.ParallaxProvider })),
+//   { ssr: false }
+// )
 export default function Home() {
   return (
     <ParallaxProvider>
       <div>
         <div className="relative">
-          <FuturisticBackground />
+          {/* <FuturisticBackground /> */}
         </div>
 
         <Navbar />
