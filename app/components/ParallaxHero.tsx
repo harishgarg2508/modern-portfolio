@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-function ParallaxProjects() {
+function ParallaxHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
@@ -74,4 +74,4 @@ function ParallaxProjects() {
   );
 }
 
-export default ParallaxProjects;
+export default ParallaxHero;

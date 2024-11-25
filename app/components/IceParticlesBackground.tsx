@@ -1,9 +1,26 @@
-"use client"
+'use client'
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const FuturisticBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const setCanvasSize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    return () => {
+      window.removeEventListener('resize', setCanvasSize);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,12 +29,8 @@ const FuturisticBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
 
     class Particle {
       x: number;
@@ -29,7 +42,6 @@ const FuturisticBackground: React.FC = () => {
       color: string;
 
       constructor() {
-        const canvas = canvasRef.current!;
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2.5 + 0.5;
@@ -50,7 +62,6 @@ const FuturisticBackground: React.FC = () => {
       }
 
       update() {
-        const canvas = canvasRef.current!;
         this.y += this.speedY;
         this.x += this.speedX;
 
@@ -83,7 +94,6 @@ const FuturisticBackground: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Updated gradient with deep purple and dark blue colors for a futuristic look
       const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
@@ -122,11 +132,7 @@ const FuturisticBackground: React.FC = () => {
     };
 
     animate();
-
-    return () => {
-      window.removeEventListener('resize', setCanvasSize);
-    };
-  }, []);
+  }, [dimensions]);
 
   return (
     <canvas
@@ -138,4 +144,3 @@ const FuturisticBackground: React.FC = () => {
 };
 
 export default FuturisticBackground;
-

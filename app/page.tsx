@@ -1,37 +1,25 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { ParallaxProvider } from 'react-scroll-parallax'
-// import ParticleBackground from './components/ParticleBackground'
-import FuturisticBackground from './components/IceParticlesBackground'
-// import DarkModeToggle from './components/DarkModeToggle'
 import Navbar from './components/Navbar'
-import ParallaxHero from './components/ParallaxHero'
+import ParallaxProjects from './components/ParallaxHero'
 import AnimatedSkillIcons from './components/AnimatedSkillIcons'
 import { ExperienceSection } from './components/ExperienceSection'
-import ParallaxProjects from './components/ParallaxProjects'
 import EducationSection from './components/EducationSection'
-import Contact from './components/contact'
+import ContactForm from './components/contact'
 import SocialLinks from './components/SocialLinks'
+import ParallaxHero from './components/ParallaxHero'
+
+const FuturisticBackground = dynamic(() => import('./components/IceParticlesBackground'), { ssr: false })
 
 export default function Home() {
-  // const [darkMode, setDarkMode] = useState(false)
-
-  // useEffect(() => {
-  //   document.body.classList.toggle('dark', darkMode)
-  // }, [darkMode])
-
   return (
     <ParallaxProvider>
-      <div >
+      <div>
         <div className="relative">
           <FuturisticBackground />
-          {/* <ParticleBackground /> */}
         </div>
-
-        {/* <header className="fixed top-0 left-0 right-0 z-50 p-4">
-          <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-        </header> */}
 
         <Navbar />
 
@@ -62,7 +50,7 @@ export default function Home() {
 
             <section id="contact" className="py-20">
               <h2 className="text-4xl font-bold mb-10 text-center"></h2>
-              <Contact />
+              <ContactForm />
               <SocialLinks />
             </section>
           </div>
@@ -71,5 +59,3 @@ export default function Home() {
     </ParallaxProvider>
   )
 }
-
-
