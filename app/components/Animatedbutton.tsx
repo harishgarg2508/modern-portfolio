@@ -65,3 +65,6 @@ export const AnimatedButton = ({ onClick }: AnimatedButtonProps) => {
     </motion.button>
   )
 }
+
+// "eslint": "^8",
+// "eslint-config-next": "15.0.3",
