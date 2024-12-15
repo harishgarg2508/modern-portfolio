@@ -15,13 +15,13 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: 1,
-    title: 'A SNAKE Game',
-    description: 'A classic Snake game implemented with HTML, CSS, and JavaScript. Features responsive design and increasing difficulty as the snake grows.',
-    image: '/snake.png',
-    tags: ['HTML', 'CSS', 'Javascript'],
-    github: 'https://github.com/harishgarg2508/snakegame',
-    demo: 'https://harishgarg2508.github.io/snakegame/'
+    id: 3,
+    title: 'Photographer Portfolio Website',
+    description: 'A modern and visually stunning portfolio website for a photographer, built using Next.js and Tailwind CSS. Features include gallery display, client testimonials, and a responsive design optimized for all devices.',
+    image: '/photography.png',
+    tags: ['Next.js', 'Tailwind CSS', 'Portfolio'],
+    github: 'https://github.com/harishgarg2508/photographer-portfolio',
+    demo: 'https://photographyportfolio.netlify.app/'
   },
   {
     id: 2,
@@ -32,15 +32,6 @@ const projects: Project[] = [
     github: 'https://github.com/harishgarg2508/dental-clinic-website',
     demo: 'https://sunrisedentalclinic.netlify.app/'
   },
-  {
-    id: 3,
-    title: 'Weather Dashboard',
-    description: 'A real-time weather application using OpenWeatherMap API and Chart.js. Provides current weather data and forecasts with interactive charts.',
-    image: '/weather.png',
-    tags: ['API', 'Chart.js', 'React'],
-    github: 'https://github.com',
-    demo: 'https://demo.com'
-  }
 ];
 
 interface ProjectCardProps {
@@ -52,14 +43,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     <div className="w-full max-w-6xl mx-auto h-full flex flex-col bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-xl shadow-xl border border-gray-700/30 overflow-hidden">
       {/* Mobile Layout */}
       <div className="md:hidden">
-        <div className="relative aspect-[4/3]">
-          <div className="relative w-full h-full">
+        <div className="relative aspect-[4/3] flex items-center justify-center">
+          <div className="relative w-full max-w-full max-h-full">
             <Image
               src={project.image}
               alt={project.title}
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
+              sizes="(max-width: 768px) 100vw"
+              className="object-contain"
               priority
             />
           </div>
@@ -106,7 +97,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       {/* Desktop Layout */}
       <div className="hidden md:flex p-8 h-full">
-        {/* Desktop layout content remains the same */}
         <div className="w-1/2 pr-8 flex flex-col justify-between">
           <div>
             <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -147,15 +137,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </a>
           </div>
         </div>
-        <div className="w-1/2 relative group">
-          <div className="aspect-[16/9] w-full h-full relative overflow-hidden rounded-lg">
-            <div className="relative w-full h-full">
+        <div className="w-1/2 relative group flex items-center justify-center">
+          <div className="aspect-[16/9] w-full max-w-full max-h-full relative overflow-hidden rounded-lg flex items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center">
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                className="object-contain object-center"
                 priority
               />
             </div>
@@ -185,6 +175,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     </div>
   );
 };
+
+// Rest of the code remains the same (NavigationButton and ParallaxProjects components)
 
 interface NavigationButtonProps {
   direction: 'left' | 'right';
