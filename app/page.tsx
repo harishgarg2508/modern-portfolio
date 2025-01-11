@@ -38,7 +38,7 @@ export default function Home() {
 
           <div className="container mx-auto px-4">
             <section id="tech-stack" className="py-20">
-              <h2 className="text-4xl font-bold mb-10 text-center text-white">My Skills</h2>
+              <h2 className="text-4xl mt-8 font-bold mb-10 text-center text-white">My Skills</h2>
               <AnimatedSkillIcons />
             </section>
 

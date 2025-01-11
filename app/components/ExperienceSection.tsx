@@ -9,14 +9,14 @@ const experiences = [
   {
     title: "Ai Training associate",
     company: "Outlier",
-    period: "2024 - Present",
+    period: "Sep 2024 - Present",
     description: "Reviewed and evaluated AI-generated responses based on given prompts, ensuring quality and relevance. Provided detailed ratings and constructive feedback to optimize model performance."
   },
   {
     title: "Freelance Full Stack Developer",
-    company: "Dental Care Solutions",
-    period: "2024 - Present",
-    description: "Built a responsive and user-friendly website for a dental clinic as a freelance project. Utilized React and Node.js for development, integrated MongoDB for secure data management, and implemented features like online appointment scheduling to streamline operations."
+    company: "Pixel Dev",
+    period: "Nov 2024 - Present",
+    description: "Work as a freelance Full Stack Developer, delivering projects on time and within budget. Take on a variety of projects, from building responsive and user-friendly websites to developing scalable and secure APIs."
   }
 ];
 
@@ -103,7 +103,7 @@ export const ExperienceSection = () => {
           className="text-center mb-16"
         >
           <motion.h2
-            className="text-4xl font-bold text-white mb-4"
+            className="text-4xl font-bold mt-4 text-white "
             animate={{
               textShadow: [
                 "0 0 20px rgba(168, 85, 247, 0.3)",

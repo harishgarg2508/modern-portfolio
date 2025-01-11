@@ -90,10 +90,8 @@ export default function ContactForm() {
           onChange={(e) => setName(e.target.value)}
           placeholder="Your Name"
           required
-          className="w-full p-3 border bg-white/40 border-gray-300 rounded-md focus:outline-none"
-          style={{
-            background: getRandomGradient(),
-          }}
+          className="w-full p-3 border bg-white  border-gray-300 rounded-md focus:outline-none"
+          
         />
 
         <motion.input
@@ -104,9 +102,7 @@ export default function ContactForm() {
           placeholder="Your Email"
           required
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none"
-          style={{
-            background: getRandomGradient(),
-          }}
+          
         />
 
         <motion.textarea
@@ -116,9 +112,7 @@ export default function ContactForm() {
           placeholder="Your Message"
           required
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none min-h-[150px]"
-          style={{
-            background: getRandomGradient(),
-          }}
+          
         />
 
         <motion.button
