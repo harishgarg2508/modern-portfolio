@@ -56,12 +56,12 @@ const socialLinks = [
 export default function SocialLinks() {
   return (
     <>
-      {/* Desktop version */}
+      {/* Desktop version - Adjusted position */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="fixed left-6 mb-10 top-1/2 -translate-y-1/2 z-50 hidden lg:block"
+        className="fixed left-6 bottom-48 z-50 hidden lg:block"
       >
         <div className="relative">
           {/* Glowing background line */}
@@ -123,31 +123,32 @@ export default function SocialLinks() {
         </div>
       </motion.div>
 
+      {/* Mobile version */}
       <motion.div
-      className="fixed bottom-4 left-0 right-0 mx-auto w-fit z-50 block lg:hidden"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-    >
-      <div className="flex gap-3 bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 shadow-lg">
-        {socialLinks.map((link, index) => (
-          <motion.a
-            key={link.id}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-1.5 rounded-full transition-all duration-300 text-gray-400 active:scale-95"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <link.icon className="w-5 h-5" />
-          </motion.a>
-        ))}
-      </div>
-    </motion.div>
+        className="fixed bottom-4 left-0 right-0 mx-auto w-fit z-50 block lg:hidden"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <div className="flex gap-3 bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 shadow-lg">
+          {socialLinks.map((link, index) => (
+            <motion.a
+              key={link.id}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded-full transition-all duration-300 text-gray-400 active:scale-95"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <link.icon className="w-5 h-5" />
+            </motion.a>
+          ))}
+        </div>
+      </motion.div>
     </>
   );
 }
