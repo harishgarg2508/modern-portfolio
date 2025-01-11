@@ -46,7 +46,7 @@ const projects: Project[] = [
     id: 4,
     title: 'Personal Portfolio Website',
     description: 'A personal portfolio website showcasing my skills, education, projects, social profiles, and other relevant information. Built with Next.js and Tailwind CSS, it features a responsive design and an easy-to-navigate interface.',
-    image: '/images/Project4.png',
+    image: '/images/image.png',
     tags: ['React', 'Tailwind CSS',"Next.js"],
     github: 'https://github.com/harishgarg2508/modern-portfolio',
     demo: 'https://harishgarg.tech'
@@ -73,7 +73,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`group relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-lg overflow-hidden border border-gray-700/30 transition-all duration-500 max-w-md mx-auto ${
+        className={`group relative  border border-gray-700/30 transition-all duration-500 max-w-md mx-auto ${
           isExpanded
             ? 'shadow-2xl shadow-blue-500/20 border-blue-500/50'
             : 'hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-500/30'
