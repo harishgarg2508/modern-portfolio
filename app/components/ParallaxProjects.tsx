@@ -184,7 +184,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
 export default function ProjectsSection() {
   return (
-    <section className=" rounded-l-full rounded-br-full min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="  min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">

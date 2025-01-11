@@ -91,7 +91,7 @@ export const ExperienceSection = () => {
   }
 
   return (
-    <section className="min-h-screen bg-black  rounded-tl-full rounded-br-full py-20 relative overflow-hidden">
+    <section className="min-h-screen bg-black/400 py-20 relative overflow-hidden">
       <BackgroundGradient />
 
       <div className="max-w-5xl mx-auto px-4">
