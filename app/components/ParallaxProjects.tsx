@@ -73,7 +73,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`group relative  border border-gray-700/30 transition-all duration-500 max-w-md mx-auto ${
+        className={`group relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-lg overflow-hidden border border-gray-700/30 transition-all duration-500 max-w-md mx-auto ${
           isExpanded
             ? 'shadow-2xl shadow-blue-500/20 border-blue-500/50'
             : 'hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-500/30'
@@ -184,7 +184,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
 export default function ProjectsSection() {
   return (
-    <section className="  min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="  min-h-screen py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">

@@ -61,7 +61,7 @@ export default function SocialLinks() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:block"
+        className="fixed left-6 mb-10 top-1/2 -translate-y-1/2 z-50 hidden lg:block"
       >
         <div className="relative">
           {/* Glowing background line */}
