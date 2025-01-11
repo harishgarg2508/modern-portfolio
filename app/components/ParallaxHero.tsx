@@ -62,9 +62,9 @@ function ParallaxHero() {
 
       {/* Mouse follower gradient */}
       <div
-        className="fixed w-[500px] h-[500px] rounded-full pointer-events-none"
+        className="fixed w-[500px] h-[500px] rounded-full pointer-events-none "
         style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(0,0,0,0) 70%)',
+          background: 'radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%)',
           left: mousePosition.x - 250,
           top: mousePosition.y - 250,
           transform: 'translate(-50%, -50%)',

@@ -27,7 +27,7 @@ const skills = [
 
 export default function AnimatedSkillIcons() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5  gap-8">
+    <div className="rounded-bl-full  overflow-hidden  rounded-tr-full bg-black grid grid-cols-2 md:grid-cols-5 z-10  gap-8">
       {skills.map((skill, index) => (
         <Parallax
           key={skill.name}

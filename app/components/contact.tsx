@@ -67,7 +67,7 @@ export default function ContactForm() {
 
   return (
     <motion.div
-      className="min-h-screen flex items-center justify-center bg-white-100 p-4"
+      className="min-h-screen flex items-center justify-center bg-black rounded-bl-full rounded-r-full p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
