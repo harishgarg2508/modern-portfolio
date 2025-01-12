@@ -45,7 +45,7 @@ function ParallaxHero() {
 
             <div className="flex gap-6 mb-12">
               <a
-                href="https://shorturl.at/fTDua"
+                href="https://docs.google.com/document/d/1n3Thmc6nc480EStdnFpBchT9Zhacl33p/edit?usp=sharing&ouid=106483141177534184864&rtpof=true&sd=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-block px-8 py-4 border-2 border-blue-400 text-blue-400 rounded-lg overflow-hidden transition-all"
