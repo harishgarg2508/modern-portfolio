@@ -22,7 +22,7 @@ const socialLinks = [
   {
     id: 3,
     icon: Code2,
-    url: 'https://leetcode.com/rishushar123321',
+    url: 'https://leetcode.com/rishusharma123321',
     label: '.  LeetCode',
     hoverBg: 'group-hover:bg-[#FFA116]',
     iconColor: 'group-hover:text-black'
