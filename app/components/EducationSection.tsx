@@ -11,10 +11,10 @@ const education = [
     institution: "Lovely Professional University",
     location: "Punjab, India",
     duration: "2022 - 2026",
-    grade: "8.05 CGPA",
+    grade: "8.18 CGPA",
     achievements: [
-      "Dean's List for Academic Excellence",
-      "Won 1st Prize in Hackathon"
+      
+      "Won 1st Prize in Hackathon",
     ],
     courses: ["Data Structures", "Algorithms", "Web Development", "React"],
     color: "blue"
