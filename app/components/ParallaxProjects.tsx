@@ -51,6 +51,15 @@ const projects: Project[] = [
     github: 'https://github.com/harishgarg2508/modern-portfolio',
     demo: 'https://harishgarg.tech'
   },
+  {
+    id: 5,
+    title: 'Weather App',
+    description: 'A dynamic weather application that provides real-time weather updates for any location. Built with React and Tailwind CSS, it features a clean and responsive design, interactive UI, and integration with a weather API for accurate forecasts.',
+    image: '/weatherproject.png',
+    tags: ['React', 'Tailwind CSS', 'API Integration'],
+    github: 'https://github.com/harishgarg2508/weather-app',
+    demo: 'https://weatherapp.example.com'
+},
 ];
 
 const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
