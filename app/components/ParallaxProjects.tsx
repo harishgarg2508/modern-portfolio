@@ -57,8 +57,17 @@ const projects: Project[] = [
     description: 'A dynamic weather application that provides real-time weather updates for any location. Built with React and Tailwind CSS, it features a clean and responsive design, interactive UI, and integration with a weather API for accurate forecasts.',
     image: '/weatherproject.png',
     tags: ['React', 'Tailwind CSS', 'API Integration'],
-    github: 'https://github.com/harishgarg2508/weather-app',
-    demo: 'https://weatherapp.example.com'
+    github: 'https://github.com/harishgarg2508/weatherapp',
+    demo: 'https://wappharish.vercel.app/'
+},
+{
+  id: 6,
+  title: 'Chat Application',
+  description: 'A real-time chat application built with React and Firebase. It features user authentication, private and group chats, message notifications, and a responsive design for seamless communication across devices.',
+  image: '/images/chatapp.png',
+  tags: ['React', 'Firebase', 'Real-Time Communication'],
+  github: 'https://github.com/harishgarg2508/full-stack-chat-app-MERN',
+  demo: 'https://full-stack-chat-app-mern.onrender.com/'
 },
 ];
 

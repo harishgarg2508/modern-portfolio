@@ -10,6 +10,7 @@ import EducationSection from './components/EducationSection'
 import ContactForm from './components/contact'
 import SocialLinks from './components/SocialLinks'
 import ParallaxHero from './components/ParallaxHero'
+import CertificatesPage from './components/certificate'
 
 // const FuturisticBackground = dynamic(() => import('./components/IceParticlesBackground'), { ssr: false })
 // const ClientParallaxProvider = dynamic(() => 
@@ -55,6 +56,8 @@ export default function Home() {
             <section id="education" className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
               <EducationSection />
             </section>
+              <CertificatesPage />
+           
 
             <section id="contact" className="py-20">
               <h2 className="text-4xl font-bold mb-10 text-center"></h2>
