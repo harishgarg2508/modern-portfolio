@@ -1,23 +1,28 @@
-'use client'
+'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { ExperienceCard } from './ExperienceCard';
 import { TimelineConnector } from './TimelineConnector';
 import { useEffect, useState, useMemo } from 'react';
 
+// ✅ Include logo URL in each experience
 const experiences = [
   {
-    title: "Ai Training associate",
+    title: "AI Training Associate",
     company: "Outlier",
     period: "Sep 2024 - Present",
-    description: "Reviewed and evaluated AI-generated responses based on given prompts, ensuring quality and relevance. Provided detailed ratings and constructive feedback to optimize model performance."
+    description:
+      "Reviewed and evaluated AI-generated responses based on given prompts, ensuring quality and relevance. Provided detailed ratings and constructive feedback to optimize model performance.",
+    logo: "https://shorturl.at/C32wv",
   },
   {
     title: "Freelance Full Stack Developer",
     company: "Pixel Dev",
     period: "Nov 2024 - Present",
-    description: "Work as a freelance Full Stack Developer, delivering projects on time and within budget. Take on a variety of projects, from building responsive and user-friendly websites to developing scalable and secure APIs."
-  }
+    description:
+      "Work as a freelance Full Stack Developer, delivering projects on time and within budget. Take on a variety of projects, from building responsive and user-friendly websites to developing scalable and secure APIs.",
+    logo: "https://shorturl.at/SJyxf",
+  },
 ];
 
 const generateParticles = (count: number) => {
@@ -25,8 +30,8 @@ const generateParticles = (count: number) => {
     id: i,
     randomX: Math.random() * 100,
     randomY: Math.random() * 100,
-    delay: Math.random() * 2, // Reduced delay variation
-    duration: 3 + Math.random() * 4 // Reduced duration range
+    delay: Math.random() * 2,
+    duration: 3 + Math.random() * 4,
   }));
 };
 
@@ -34,44 +39,55 @@ const BackgroundGradient = () => (
   <motion.div
     className="absolute inset-0 opacity-30"
     style={{
-      backgroundImage: 'radial-gradient(circle at 50% 50%, purple 1px, transparent 1px)',
+      backgroundImage:
+        'radial-gradient(circle at 50% 50%, purple 1px, transparent 1px)',
       backgroundSize: '100px 50px',
     }}
     initial={{ opacity: 0.2 }}
     animate={{
-      scale: [1, 1.05, 1], // Reduced scale range
-      opacity: [0.2, 0.25, 0.2], // Reduced opacity range
+      scale: [1, 1.05, 1],
+      opacity: [0.2, 0.25, 0.2],
     }}
     transition={{
-      duration: 8, // Increased duration for smoother animation
+      duration: 8,
       repeat: Infinity,
-      repeatType: "reverse",
-      ease: "linear"
+      repeatType: 'reverse',
+      ease: 'linear',
     }}
   />
 );
 
-const ParticleEffect = ({ particle }: { particle: ReturnType<typeof generateParticles>[0] }) => {
+const ParticleEffect = ({
+  particle,
+}: {
+  particle: ReturnType<typeof generateParticles>[0];
+}) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
       key={particle.id}
       className="particle"
-      style={{
-        '--random-x': particle.randomX,
-        '--random-y': particle.randomY,
-      } as React.CSSProperties}
+      style={
+        {
+          '--random-x': particle.randomX,
+          '--random-y': particle.randomY,
+        } as React.CSSProperties
+      }
       initial={{ opacity: 0, scale: 0 }}
-      animate={shouldReduceMotion ? { opacity: 0.5, scale: 1 } : {
-        opacity: [0, 0.5, 0],
-        scale: [0, 1, 0],
-      }}
+      animate={
+        shouldReduceMotion
+          ? { opacity: 0.5, scale: 1 }
+          : {
+              opacity: [0, 0.5, 0],
+              scale: [0, 1, 0],
+            }
+      }
       transition={{
         duration: particle.duration,
         repeat: Infinity,
-        repeatType: "loop",
-        ease: "linear",
+        repeatType: 'loop',
+        ease: 'linear',
         delay: particle.delay,
       }}
     />
@@ -80,15 +96,13 @@ const ParticleEffect = ({ particle }: { particle: ReturnType<typeof generatePart
 
 export const ExperienceSection = () => {
   const [mounted, setMounted] = useState(false);
-  const particles = useMemo(() => generateParticles(12), []); // Reduced particle count
+  const particles = useMemo(() => generateParticles(12), []);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   return (
     <section className="min-h-screen bg-black/400 py-20 relative overflow-hidden">
@@ -98,24 +112,24 @@ export const ExperienceSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <motion.h2
-            className="text-4xl font-bold mt-4 text-white "
+            className="text-4xl font-bold mt-4 text-white"
             animate={{
               textShadow: [
-                "0 0 20px rgba(168, 85, 247, 0.3)",
-                "0 0 30px rgba(168, 85, 247, 0.3)",
-                "0 0 20px rgba(168, 85, 247, 0.3)",
+                '0 0 20px rgba(168, 85, 247, 0.3)',
+                '0 0 30px rgba(168, 85, 247, 0.3)',
+                '0 0 20px rgba(168, 85, 247, 0.3)',
               ],
             }}
             transition={{
               duration: 3,
               repeat: Infinity,
-              repeatType: "reverse",
-              ease: "linear"
+              repeatType: 'reverse',
+              ease: 'linear',
             }}
           >
             Professional Experience
@@ -125,7 +139,7 @@ export const ExperienceSection = () => {
 
         <div className="relative pl-8">
           <TimelineConnector />
-          
+
           <div className="space-y-8">
             {experiences.map((experience, index) => (
               <ExperienceCard key={index} {...experience} index={index} />
