@@ -153,11 +153,7 @@ const CertificateCard: React.FC<CertificateCardProps> = ({ certificate, isActive
           height: "80vh",
           width: "90%",
           maxWidth: "1200px",
-          transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 30
-          }
+         
         }}
       >
         <div className="flex flex-col h-full">
